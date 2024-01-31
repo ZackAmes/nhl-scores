@@ -2,10 +2,10 @@ import { useState } from 'react';
  
 const App = (data: any) => {
   const [count, setCount] = useState(0);
+  console.log(data);
  
   return (
     <main>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
 
       <h1>App</h1>
       <p>Lorem Ipsum</p>

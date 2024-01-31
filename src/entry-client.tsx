@@ -10,5 +10,5 @@ if (typeof window !== 'undefined') {
 }
 
 if(root){
-    hydrateRoot(root, <App />);
+    hydrateRoot(root, <App data={data}/>);
 }
