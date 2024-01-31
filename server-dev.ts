@@ -1,7 +1,6 @@
 import fs from 'fs';
 import express from 'express';
 import { createServer } from 'vite';
-import { getFrameAccountAddress } from '@coinbase/onchainkit';
 import {IFrameProps, frameGenerator} from './frames';
 
 const app = express();
