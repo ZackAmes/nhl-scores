@@ -36,7 +36,7 @@ function generateFarcasterFrameMetaTag({ frame, data, postUrl, buttons }: IFrame
 }
 
 const get_canvas = (data: any) => {
-
+    /*
     var width   = 640
     var height  = 360
     var gl = require('gl')(width, height, { preserveDrawingBuffer: true })
@@ -45,7 +45,10 @@ const get_canvas = (data: any) => {
     gl.clearColor(1, 0, 0, 1)
     gl.clear(gl.COLOR_BUFFER_BIT)
 
-    return gl.dataURL();
+    return gl.dataURL(); 
+    */
+
+    return "https://example.com/img.png"
 
 }
   
