@@ -28,6 +28,6 @@
     "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
     "build:function": "vite build --ssr src/function.ts --outDir dist/function",
     "build": "bun run build:client && bun run build:server && bun run build:function",
-    "start": "ts-node entry-server.js"
+    "start": "ts-node entry-server.ts"
   }
 }
