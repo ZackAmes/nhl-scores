@@ -22,8 +22,16 @@ export const metadata: Metadata = {
   },
 };
 
+async function get_scores() {
+  const response = await fetch('https://nhl-score-api.herokuapp.com/api/scores/latest');
+  const data = await response.json();
+  console.log(data);
+  return data;
+}
 
-export default function Page() {
+
+export default function Page(data: any) {
+  console.log(data)
   return (
     <>
       <h1>nhl scores</h1>
