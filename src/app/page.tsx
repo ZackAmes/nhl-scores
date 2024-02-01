@@ -1,40 +1,25 @@
+'use client'
+
 import { getFrameMetadata } from '@coinbase/onchainkit';
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic'
+import { Suspense } from 'react';
+import { View } from '@/components/canvas/view';
+import { Common } from '@/components/canvas/view';
 
-const NEXT_PUBLIC_URL = 'https://nhl-scores.vercel.app/';
 
-const frameMetadata = getFrameMetadata({
-  buttons: [{label: 'Farcaster'}, {label: 'Twitter'}],
-  image: 'https://first-frame-phi.vercel.app/choice.jpg',
-  post_url: 'https:///first-frame-phi.vercel.app/api/frame',
-});
-
-export const metadata: Metadata = {
-  title: '',
-  description: 'choose',
-  openGraph: {
-    title: 'choose',
-    description: 'pick a path',
-    images: ['https://first-frame-phi.vercel.app/lightpath.jpg', 'https://first-frame-phi.vercel.app/darkpath.png'],
-  },
-  other: {
-    ...frameMetadata,
-  },
-};
-
-async function get_scores() {
-  const response = await fetch('https://nhl-score-api.herokuapp.com/api/scores/latest');
-  const data = await response.json();
-  console.log(data);
-  return data;
-}
-
+const Test = dynamic(() => import('@/components/canvas/Test').then((mod) => mod.Test), { ssr: false })
 
 export default function Page(data: any) {
   console.log(data)
   return (
-    <>
-      <h1>nhl scores</h1>
-    </>
+    <div className='relative my-12 h-48 w-full py-6 sm:w-1/2 md:mb-40'>
+          <View orbit className='relative h-full animate-bounce sm:h-48 sm:w-full'>
+            <Suspense fallback={null}>
+              <Test route={'/blob'} scale={2} position={[0, -1.6, 0]} />
+              <Common color={'lightblue'} />
+            </Suspense>
+          </View>
+        </div>
   );
 }
