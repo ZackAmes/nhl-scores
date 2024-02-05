@@ -33,10 +33,16 @@ const getServerData = async () => {
     return data;
 };
 
-const initialFrameData = {
-    imgData: {col:'red', fid:'Press Button to show fid'},
-    buttons: {label1: 'Show FID'},
-    url
+const initialFrameData = (data) => {
+    return {
+        imgData: {
+            game_data: data,
+            scene_id: 0, 
+            game_id: 0
+        },
+        buttons: {label1: 'Get Scores'},
+        url
+    }
 }
 
 app.get('/', async (req, res) => {
@@ -44,19 +50,25 @@ app.get('/', async (req, res) => {
     const nhl_data = await getServerData();
     console.log(nhl_data);
 
-    res.render('page', initialFrameData );
+    res.render('page', initialFrameData(nhl_data[0]) );
 })
 
 app.post('/frame', async (req, res) => {
 
     const body = await req.body;
     
-    let data = await getFrameMessage(body,  { NEYNAR_API_KEY: 'NEYNAR_API_DOCS' });
-    console.log(data)
+    let msg_data = await getFrameMessage(body,  { NEYNAR_API_KEY: 'NEYNAR_API_DOCS' });
+    console.log(msg_data)
 
-    let responseFrameData = {
-        imgData: {col:'green', fid:body.untrustedData.fid ? body.untrustedData.fid : " err "},
-        buttons: {},
+    let game_data = await getServerData();
+
+    let responseFrameData =  {
+        imgData: {
+            game_data: data,
+            scene_id: 0, 
+            game_id: 0
+        },
+        buttons: {label1: 'Get Scores'},
         url
     }
 
